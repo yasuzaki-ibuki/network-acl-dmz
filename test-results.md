@@ -17,17 +17,19 @@
 | 3-4 | 要件3 | PC2 → PC3 へ ping | 成功 | | ACL2 20番 |
 | 4-1 | 要件4 | PC1 → PC2 へ ping | 失敗 | | ACL1 999番 |
 
-## 前回ルールの試験(要件5)
+## DMZ・外部との通信ルールの試験(要件5)
 
-| No | ルール | 試験内容 | 期待結果 | 結果 | 確認したACL |
+通信ルールの内容は [README.md](README.md) の「DMZ・外部との通信ルール」を参照。
+
+| No | 対象の通信 | 試験内容 | 期待結果 | 結果 | 確認したACL |
 |---|---|---|---|---|---|
-| 5-1 | E | PC3 → SV1 を Web Browser で表示(http://172.16.1.1) | 表示される | | ACL2 10番、ACL3 40番 |
-| 5-2 | F | PC3 → PC1 へ ping | 失敗 | | ACL2 30番 |
-| 5-3 | F | PC3 → PC2 へ ping | 失敗 | | ACL2 40番 |
-| 5-4 | F | PC3 → SV2 へ ping | 失敗 | | ACL2 50番 |
-| 5-5 | G | PC1 → SV1 へ ping・Web | 成功 | | ACL1 40番、ACL3 10・50番 |
-| 5-6 | G | SV2 → SV1 へ ping | 成功 | | ACL3 30番 |
-| 5-7 | H | SV1 → PC1・PC2・SV2 へ ping | すべて失敗 | | ACL3 暗黙のdeny |
+| 5-1 | 外部→DMZ | PC3 → SV1 を Web Browser で表示(http://172.16.1.1) | 表示される | | ACL2 10番、ACL3 40番 |
+| 5-2 | 外部→社内LAN | PC3 → PC1 へ ping | 失敗 | | ACL2 30番 |
+| 5-3 | 外部→社内LAN | PC3 → PC2 へ ping | 失敗 | | ACL2 40番 |
+| 5-4 | 外部→社内LAN | PC3 → SV2 へ ping | 失敗 | | ACL2 50番 |
+| 5-5 | 社内LAN→DMZ | PC1 → SV1 へ ping・Web | 成功 | | ACL1 40番、ACL3 10・50番 |
+| 5-6 | 社内LAN→DMZ | SV2 → SV1 へ ping | 成功 | | ACL3 30番 |
+| 5-7 | DMZ→社内LAN | SV1 → PC1・PC2・SV2 へ ping | すべて失敗 | | ACL3 暗黙のdeny |
 
 ## 要件外の動作(参考)
 
